@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fruits - FruitBasket</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            background-attachment: fixed;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar h1 {
+            color: #ff5722;
+            font-size: 24px;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 15px;
+        }
+        .navbar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .fruits-section {
+            text-align: center;
+            margin: 120px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 90%;
+        }
+        .fruits-section h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .fruit-item {
+            background: #f1f1f1;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .fruit-item h3 {
+            color: #ff5722;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .fruit-item p {
+            font-size: 18px;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            margin-top: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>🍏 FruitBasket</h1>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('aboutus') }}">About</a></li>
+            <li><a href="{{ url_for('fruits') }}">Fruits</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="fruits-section">
+        <h2>Our Fruits & Their Benefits 🍎🍊🍓</h2>
+
+        <div class="fruit-item">
+            <h3>Apple 🍏</h3>
+            <p>Apples are rich in fiber and antioxidants, promoting heart health and reducing the risk of chronic diseases. They also support weight loss and improve gut health.</p>
+        </div>
+
+        <div class="fruit-item">
+            <h3>Banana 🍌</h3>
+            <p>Bananas are packed with potassium, which helps maintain blood pressure levels and support heart function. They are also a great source of quick energy and improve digestion.</p>
+        </div>
+
+        <div class="fruit-item">
+            <h3>Orange 🍊</h3>
+            <p>Oranges are an excellent source of Vitamin C, boosting the immune system and promoting healthy skin. They also support heart health and prevent kidney stones.</p>
+        </div>
+
+        <div class="fruit-item">
+            <h3>Strawberry 🍓</h3>
+            <p>Strawberries are loaded with antioxidants and Vitamin C, which help protect the body from inflammation and oxidative stress. They also support heart health and skin health.</p>
+        </div>
+
+        <div class="fruit-item">
+            <h3>Pineapple 🍍</h3>
+            <p>Pineapples are rich in Vitamin C and bromelain, an enzyme that aids digestion and reduces inflammation. They help improve immune function and promote skin health.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 FruitBasket | Designed with ❤️</p>
+    </div>
+
+</body>
+</html>

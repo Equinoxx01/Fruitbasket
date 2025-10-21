@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - FruitShop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #ff6161;
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h1 {
+            font-size: 24px;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .checkout-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .checkout-header h2 {
+            color: #4CAF50;
+        }
+        .order-summary {
+            margin-bottom: 30px;
+        }
+        .order-summary h3 {
+            margin-bottom: 15px;
+            color: #f00909;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .order-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+        .payment-info input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .payment-info button {
+            padding: 15px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .payment-info button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>FruitBasketShop 🍎🍍</h1>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="aboutus.html">About us</a></li>
+            <li><a href="shop.html">Shop</a></li>
+        </ul>
+    </div>
+
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h2>Checkout</h2>
+            <p>Please fill in your details to complete the purchase.</p>
+        </div>
+
+        
+        <div class="order-summary">
+            <h3>Order Summary:</h3>
+            
+            <div class="order-item">
+                <div class="item-info">
+                    <div class="item-name">🍎 Fresh Apples</div>
+                    <div class="item-qty">Quantity: 2 kg</div>
+                </div>
+                <div class="item-price">₱300.00</div>
+            </div>
+
+            <div class="order-item">
+                <div class="item-info">
+                    <div class="item-name">🍊 Juicy Oranges</div>
+                    <div class="item-qty">Quantity: 1 kg</div>
+                </div>
+                <div class="item-price">₱150.00</div>
+            </div>
+
+            <div class="order-item">
+                <div class="item-info">
+                    <div class="item-name">🍓 Fresh Strawberries</div>
+                    <div class="item-qty">Quantity: 1 basket</div>
+                </div>
+                <div class="item-price">₱350.00</div>
+            </div>
+
+            <div class="order-total">
+                Total: ₱800.00
+            </div>
+        </div>
+        <div class="payment-info">
+            <h3>Payment Information</h3>
+            <form action="homepage.html" method="POST">
+                <input type="text" name="name" placeholder="Full Name" required />
+                <input type="email" name="email" placeholder="Email Address" required />
+                <input type="text" name="address" placeholder="Shipping Address" required />
+                <input type="text" name="phone" placeholder="Phone Number" required />
+                
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

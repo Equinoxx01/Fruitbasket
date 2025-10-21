@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FruitShop - Fresh Fruits for Sale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: #f1f1f1;
+            color: #333;
+        }
+        .navbar {
+            background-color: #ff6161;
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h1 {
+            font-size: 24px;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero {
+            background: url('') center/cover;
+            color: rgb(252, 4, 4);
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 48px;
+        }
+        .hero p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        .fruit-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .fruit-card {
+            background-color: white;
+            border-radius: 10px;
+            width: 280px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .fruit-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .fruit-card h3 {
+            color: #f00909;
+            margin-top: 10px;
+        }
+        .fruit-card p {
+            color: #555;
+            margin: 10px 0;
+        }
+        .fruit-card .price {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .fruit-card:hover {
+            transform: scale(1.05);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f00909;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #ff9a9e;
+        }
+        .footer {
+            background-color: #f00909;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .contact-section {
+            text-align: center;
+            margin: 50px auto;
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .contact-section h2 {
+            color: #ff9a9e;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="logged-out">
+
+    <div class="navbar">
+        <h1>FruitBasketShop 🍎🍍</h1>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('aboutus') }}">About us</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+        </ul>
+    </div>
+
+    <div class="hero">
+        <h1>Fresh Fruits Delivered to Your Doorstep!</h1>
+        <p>Explore our wide variety of fresh, organic, and healthy fruits. Order now and enjoy the best quality!</p>
+    </div>
+
+    <div id="fruits" class="fruit-container">
+        <div class="fruit-card" data-price="150" data-name="Fresh Apples">
+            <img src="{{ url_for('static', filename='apples.jpg') }}" alt="Apple" />
+            <h3>🍎 Fresh Apples</h3>
+            <p>Delicious and crunchy apples perfect for snacking or making apple pies!</p>
+            <p class="price">₱150.00 per kg</p>
+            <a href="#" class="btn">Add to Cart</a>
+        </div>
+        <div class="fruit-card" data-price="150" data-name="Juicy Oranges">
+            <img src="{{ url_for('static', filename='oranges.jpg') }}" alt="Orange" />
+            <h3>🍊 Juicy Oranges</h3>
+            <p>Sweet, juicy oranges, full of Vitamin C to boost your immune system!</p>
+            <p class="price">₱150.00 per kg</p>
+            <a href="#" class="btn">Add to Cart</a>
+        </div>
+        <div class="fruit-card" data-price="250" data-name="Ripe Bananas">
+            <img src="{{ url_for('static', filename='bananas.jpg') }}" alt="Banana" />
+            <h3>🍌 Ripe Bananas</h3>
+            <p>Bananas full of potassium and perfect for a quick energy boost.</p>
+            <p class="price">₱250.00 per kg</p>
+            <a href="#" class="btn">Add to Cart</a>
+        </div>
+        <div class="fruit-card" data-price="350" data-name="Fresh Strawberries">
+            <img src="{{ url_for('static', filename='strawberries.jpg') }}" alt="Strawberry" />
+            <h3>🍓 Fresh Strawberries</h3>
+            <p>Sweet and succulent strawberries, perfect for smoothies or desserts!</p>
+            <p class="price">₱350.00 per basket</p>
+            <a href="#" class="btn">Add to Cart</a>
+        </div>
+        <div class="fruit-card" data-price="150" data-name="Tropical Pineapples">
+            <img src="{{ url_for('static', filename='pineapples.jpg') }}" alt="Pineapple" />
+            <h3>🍍 Tropical Pineapples</h3>
+            <p>Fresh, sweet pineapples that bring the tropical vibes right to your home.</p>
+            <p class="price">₱150.00 each</p>
+            <a href="#" class="btn">Add to Cart</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 FruitShop | Fresh Fruits Delivered With Love ❤️</p>
+    </div>
+
+</body>
+</html>
