@@ -4,185 +4,129 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FruitShop - Fresh Fruits for Sale</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background: #f1f1f1;
-            color: #333;
-        }
-        .navbar {
-            background-color: #ff6161;
-            padding: 15px 20px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar h1 {
-            font-size: 24px;
-        }
-        .navbar ul {
-            list-style: none;
-            display: flex;
-        }
-        .navbar ul li {
-            margin-left: 20px;
-        }
-        .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .hero {
-            background: url('') center/cover;
-            color: rgb(252, 4, 4);
-            text-align: center;
-            padding: 100px 20px;
-        }
-        .hero h1 {
-            font-size: 48px;
-        }
-        .hero p {
-            font-size: 20px;
-            margin-top: 10px;
-        }
-        .fruit-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin: 50px auto;
-            padding: 20px;
-        }
-        .fruit-card {
-            background-color: white;
-            border-radius: 10px;
-            width: 280px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        .fruit-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-        .fruit-card h3 {
-            color: #f00909;
-            margin-top: 10px;
-        }
-        .fruit-card p {
-            color: #555;
-            margin: 10px 0;
-        }
-        .fruit-card .price {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .fruit-card:hover {
-            transform: scale(1.05);
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #f00909;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #ff9a9e;
-        }
-        .footer {
-            background-color: #f00909;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-        .contact-section {
-            text-align: center;
-            margin: 50px auto;
-            background: rgb(255, 255, 255);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        .contact-section h2 {
-            color: #ff9a9e;
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="logged-out">
+<body>
 
     <div class="navbar">
-        <h1>FruitBasketShop 🍎🍍</h1>
+        <h1 onclick="window.location.href='/'">🍏 FruitBasket</h1>
         <ul>
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('aboutus') }}">About us</a></li>
+            <li><a href="{{ url_for('shop') }}">Shop</a></li>
             <li><a href="{{ url_for('contact') }}">Contact</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li class="cart-link"><a href="{{ url_for('cart') }}">Cart <span class="cart-badge">0</span></a></li>   
         </ul>
     </div>
 
     <div class="hero">
-        <h1>Fresh Fruits Delivered to Your Doorstep!</h1>
-        <p>Explore our wide variety of fresh, organic, and healthy fruits. Order now and enjoy the best quality!</p>
+        <h1>Fresh Fruits Delivered! 🍎🍍</h1>
+        <p>Explore our wide variety of fresh, organic, and healthy fruits. Order now!</p>
     </div>
 
     <div id="fruits" class="fruit-container">
-        <div class="fruit-card" data-price="150" data-name="Fresh Apples">
+        <div class="fruit-card">
             <img src="{{ url_for('static', filename='apples.jpg') }}" alt="Apple" />
             <h3>🍎 Fresh Apples</h3>
             <p>Delicious and crunchy apples perfect for snacking or making apple pies!</p>
-            <p class="price">₱150.00 per kg</p>
-            <a href="#" class="btn">Add to Cart</a>
+            <div class="price">₱150.00 per kg</div>
+            <div class="quantity-input">
+                <button onclick="decreaseQuantity('apples')">-</button>
+                <input type="number" id="apples-qty" value="1" min="1" readonly>
+                <button onclick="increaseQuantity('apples')">+</button>
+            </div>
+            <button class="btn" onclick="addToCart('apples')">Add to Cart</button>
         </div>
-        <div class="fruit-card" data-price="150" data-name="Juicy Oranges">
+        
+        <div class="fruit-card">
             <img src="{{ url_for('static', filename='oranges.jpg') }}" alt="Orange" />
             <h3>🍊 Juicy Oranges</h3>
             <p>Sweet, juicy oranges, full of Vitamin C to boost your immune system!</p>
-            <p class="price">₱150.00 per kg</p>
-            <a href="#" class="btn">Add to Cart</a>
+            <div class="price">₱150.00 per kg</div>
+            <div class="quantity-input">
+                <button onclick="decreaseQuantity('oranges')">-</button>
+                <input type="number" id="oranges-qty" value="1" min="1" readonly>
+                <button onclick="increaseQuantity('oranges')">+</button>
+            </div>
+            <button class="btn" onclick="addToCart('oranges')">Add to Cart</button>
         </div>
-        <div class="fruit-card" data-price="250" data-name="Ripe Bananas">
+        
+        <div class="fruit-card">
             <img src="{{ url_for('static', filename='bananas.jpg') }}" alt="Banana" />
             <h3>🍌 Ripe Bananas</h3>
             <p>Bananas full of potassium and perfect for a quick energy boost.</p>
-            <p class="price">₱250.00 per kg</p>
-            <a href="#" class="btn">Add to Cart</a>
+            <div class="price">₱250.00 per kg</div>
+            <div class="quantity-input">
+                <button onclick="decreaseQuantity('bananas')">-</button>
+                <input type="number" id="bananas-qty" value="1" min="1" readonly>
+                <button onclick="increaseQuantity('bananas')">+</button>
+            </div>
+            <button class="btn" onclick="addToCart('bananas')">Add to Cart</button>
         </div>
-        <div class="fruit-card" data-price="350" data-name="Fresh Strawberries">
+        
+        <div class="fruit-card">
             <img src="{{ url_for('static', filename='strawberries.jpg') }}" alt="Strawberry" />
             <h3>🍓 Fresh Strawberries</h3>
             <p>Sweet and succulent strawberries, perfect for smoothies or desserts!</p>
-            <p class="price">₱350.00 per basket</p>
-            <a href="#" class="btn">Add to Cart</a>
+            <div class="price">₱350.00 per basket</div>
+            <div class="quantity-input">
+                <button onclick="decreaseQuantity('strawberries')">-</button>
+                <input type="number" id="strawberries-qty" value="1" min="1" readonly>
+                <button onclick="increaseQuantity('strawberries')">+</button>
+            </div>
+            <button class="btn" onclick="addToCart('strawberries')">Add to Cart</button>
         </div>
-        <div class="fruit-card" data-price="150" data-name="Tropical Pineapples">
+        
+        <div class="fruit-card">
             <img src="{{ url_for('static', filename='pineapples.jpg') }}" alt="Pineapple" />
             <h3>🍍 Tropical Pineapples</h3>
             <p>Fresh, sweet pineapples that bring the tropical vibes right to your home.</p>
-            <p class="price">₱150.00 each</p>
-            <a href="#" class="btn">Add to Cart</a>
+            <div class="price">₱150.00 each</div>
+            <div class="quantity-input">
+                <button onclick="decreaseQuantity('pineapples')">-</button>
+                <input type="number" id="pineapples-qty" value="1" min="1" readonly>
+                <button onclick="increaseQuantity('pineapples')">+</button>
+            </div>
+            <button class="btn" onclick="addToCart('pineapples')">Add to Cart</button>
         </div>
     </div>
 
+    <div style="flex: 1;"></div>
+
     <div class="footer">
-        <p>© 2025 FruitShop | Fresh Fruits Delivered With Love ❤️</p>
+        <p>© 2025 FruitBasketShop | Fresh Fruits Delivered With Love ❤️</p>
     </div>
 
+    <script src="{{ url_for('static', filename='cart.js') }}"></script>
+    <script>
+        // Fruit data
+        const fruits = {
+            'apples': { name: '🍎 Fresh Apples', price: 150, image: 'apples.jpg' },
+            'oranges': { name: '🍊 Juicy Oranges', price: 150, image: 'oranges.jpg' },
+            'bananas': { name: '🍌 Ripe Bananas', price: 250, image: 'bananas.jpg' },
+            'strawberries': { name: '🍓 Fresh Strawberries', price: 350, image: 'strawberries.jpg' },
+            'pineapples': { name: '🍍 Tropical Pineapples', price: 150, image: 'pineapples.jpg' }
+        };
+
+        function increaseQuantity(fruitId) {
+            const input = document.getElementById(fruitId + '-qty');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decreaseQuantity(fruitId) {
+            const input = document.getElementById(fruitId + '-qty');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        function addToCart(fruitId) {
+            const fruit = fruits[fruitId];
+            const quantity = parseInt(document.getElementById(fruitId + '-qty').value);
+            cart.addItem(fruit.name, fruit.price, fruit.image, quantity);
+            // Reset quantity to 1 after adding
+            document.getElementById(fruitId + '-qty').value = 1;
+        }
+    </script>
 </body>
 </html>

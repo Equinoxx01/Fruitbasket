@@ -3,136 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Cart - FruitShop</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f1f1f1;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar {
-            background-color: #ff6161;
-            padding: 15px 20px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar h1 {
-            font-size: 24px;
-        }
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-        }
-        .navbar ul li {
-            margin-left: 20px;
-        }
-        .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .cart-container {
-            max-width: 800px;
-            margin: 50px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-        .item-info {
-            flex-grow: 1;
-        }
-        .item-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #f00909;
-        }
-        .item-qty,
-        .item-price {
-            font-size: 16px;
-            color: #555;
-        }
-        .cart-total {
-            text-align: right;
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 20px;
-            color: #333;
-        }
-        .place-order-btn {
-            width: 100%;
-            padding: 15px;
-            background-color: #ff5722;
-            color: white;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .place-order-btn:hover {
-            background-color: #e64a19;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
     <div class="navbar">
-        <h1>FruitBasketShop 🍎🍍</h1>
+        <h1 onclick="window.location.href='/'" style="cursor: pointer;">🍏 FruitBasket</h1>
         <ul>
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('aboutus') }}">About us</a></li>
-            <li><a href="{{ url_for('fruits') }}">Fruits</a></li>
+            <li><a href="{{ url_for('shop') }}">Shop</a></li>
             <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li class="cart-link"><a href="{{ url_for('cart') }}">Cart <span class="cart-badge">0</span></a></li>
         </ul>
     </div>
 
     <div class="cart-container">
-        <h2>Your Shopping Cart</h2>
+        <h2 style="text-align: center; color: #667eea; margin-bottom: 30px; font-size: 2.5rem;">Your Shopping Cart 🛒</h2>
 
-        <div class="cart-item">
-            <div class="item-info">
-                <div class="item-name">🍎 Fresh Apples</div>
-                <div class="item-qty">Quantity: 2 kg</div>
-            </div>
-            <div class="item-price">₱300.00</div>
+        <div id="cart-items">
+            <!-- Cart items will be rendered here dynamically -->
         </div>
 
-        <div class="cart-item">
-            <div class="item-info">
-                <div class="item-name">🍊 Juicy Oranges</div>
-                <div class="item-qty">Quantity: 1 kg</div>
-            </div>
-            <div class="item-price">₱150.00</div>
+        <div id="cart-total" class="cart-total">
+            Total: ₱0.00
         </div>
-
-        <div class="cart-item">
-            <div class="item-info">
-                <div class="item-name">🍓 Fresh Strawberries</div>
-                <div class="item-qty">Quantity: 1 basket</div>
-            </div>
-            <div class="item-price">₱350.00</div>
-        </div>
-
-        <div class="cart-total">
-            Total: ₱800.00
-        </div>
-
-        
     </div>
 
+    <div style="flex: 1;"></div>
+
+    <div class="footer">
+        <p>© 2025 FruitBasketShop | Fresh Fruits Delivered With Love ❤️</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='cart.js') }}"></script>
 </body>
 </html>
